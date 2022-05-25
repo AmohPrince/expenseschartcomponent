@@ -39,11 +39,27 @@ function App() {
     },
     plugins: {
       tooltip: {
+        displayColors: false,
         backgroundColor: ["hsl(25, 47%, 15%)"],
         xAlign: "center",
         yAlign: "bottom",
         caretSize: 0,
+        callbacks: {
+          title: (tooltipItems, data) => {
+            return "";
+          },
+          // label: (tooltipItem, data) => {
+          // },
+        },
       },
+    },
+    onHover: (event, chartElement) => {
+      if (chartElement.length == 1) {
+        event.native.target.style.cursor = "pointer";
+      }
+      if (chartElement.length == 0) {
+        event.native.target.style.cursor = "default";
+      }
     },
   });
   return (
